@@ -30,10 +30,14 @@ defined by the `ent/schema` package and writes a migration plan for moving from 
 
 ### Applying migrations
 
-
 To apply the pending migration files onto the database, run the following command:
 
 <AtlasMigrateApply/>
+
+<div style={{textAlign: 'center'}}>
+<img src="https://atlasgo.io/uploads/postgres/images/first-deployment.png" alt="first deployment" width="100%"/>
+<p style={{fontSize: 12}}>Migration deployment report created with <a href="https://atlasgo.cloud/">Atlas Cloud</a></p>
+</div>
 
 For more information head over to the [Atlas documentation](https://atlasgo.io/versioned/apply).
 
@@ -664,6 +668,11 @@ An output of such a run might look as follows:
 	L2: Adding a non-nullable "varchar" column "name" on table "users" without a default value implicitly sets existing rows with ""
 ```
 
+<div style={{textAlign: 'center'}}>
+<img src="https://atlasgo.io/uploads/ent/images/ci-run-reports.png" alt="first deployment" width="100%"/>
+<p style={{fontSize: 12}}>CI report created with <a href="https://atlasgo.cloud/">Atlas Cloud</a></p>
+</div>
+
 
 #### A Word on Global Unique IDs
 
@@ -716,8 +725,8 @@ func main() {
 ```
 
 :::caution Important
-After an upgrade to MySQL 8 from a previous version, you still have to run the method once to update the starting 
-values. Since MySQL 8 the counter is no longer only stored in memory, meaning subsequent calls to the method are no 
+After an upgrade to MySQL 8 from a previous version, you still have to run the method once to update the starting
+values. Since MySQL 8 the counter is no longer only stored in memory, meaning subsequent calls to the method are no
 longer needed after the first one.
 :::
 
@@ -747,8 +756,8 @@ versioned migration, you need to take some extra steps.
 
 To do this make sure your schema definition is in sync with your deployed version(s). Then spin up an empty database and
 run the diff command once as described above. This will create the statements needed to create the current state of
-your schema graph. If you happened to have [universal IDs](migrate.md#universal-ids) enabled before, any deployment will 
-have a special database table named `ent_types`. The above command will create the necessary SQL statements to create 
+your schema graph. If you happened to have [universal IDs](migrate.md#universal-ids) enabled before, any deployment will
+have a special database table named `ent_types`. The above command will create the necessary SQL statements to create
 that table as well as its contents (similar to the following):
 
 ```sql
@@ -856,8 +865,8 @@ the [installation instructions](https://atlasgo.io/cli/getting-started/setting-u
 :::
 
 In previous versions of Ent, the integrity file was opt-in. But we think this is a very important feature that provides
-great value and safety to migrations. Therefore, generation of the sum file is now the default behavior and in the 
-future we might even remove the option to disable this feature. For now, if you really want to remove integrity file 
+great value and safety to migrations. Therefore, generation of the sum file is now the default behavior and in the
+future we might even remove the option to disable this feature. For now, if you really want to remove integrity file
 generation, use the `schema.DisableChecksum()` option.
 
 In addition to the usual `.sql` migration files the migration directory will contain the `atlas.sum` file. Every time
